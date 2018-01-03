@@ -201,6 +201,21 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         }
     }
 
+    public void openLocationInMap() {
+        String addressString = "1600 Amphitheatre Parkway, CA";
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("geo")
+                .path("0,0")
+                .query(addressString);
+        Uri addressUri = builder.build();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(addressUri);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -213,15 +228,33 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_refresh) {
+//            mForecastAdapter.setWeatherData(null);
+//            loadWeatherData();
+//            return true;
+//        }
+//
+//        if (id == R.id.action_map) {
+//            openLocationInMap();
+//            return true;
+//        }
 
-        if (id == R.id.action_refresh) {
-            mForecastAdapter.setWeatherData(null);
-            loadWeatherData();
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.action_refresh:
+                mForecastAdapter.setWeatherData(null);
+                loadWeatherData();
+                return true;
+
+            case R.id.action_map:
+                openLocationInMap();
+                return true;
         }
 
-        // TODO (2) Launch the map when the map menu item is clicked
+
+        // TODO DONE (2) Launch the map when the map menu item is clicked
 
         return super.onOptionsItemSelected(item);
     }
