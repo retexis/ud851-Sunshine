@@ -42,7 +42,7 @@ import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
 
-// TODO (1) Implement the proper LoaderCallbacks interface and the methods of that interface
+// TODO DONE (1) Implement the proper LoaderCallbacks interface and the methods of that interface
 public class MainActivity extends AppCompatActivity implements
         ForecastAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<String[]> {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements
          */
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        // TODO (7) Remove the code for the AsyncTask and initialize the AsyncTaskLoader
+        // TODO DONE (7) Remove the code for the AsyncTask and initialize the AsyncTaskLoader
         /* Once all of our views are setup, we can load the weather data. */
         getSupportLoaderManager().initLoader(FORECAST_LOADER_ID, null, MainActivity.this);
 
@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity implements
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
-    // TODO (2) Within onCreateLoader, return a new AsyncTaskLoader that looks a lot like the existing FetchWeatherTask.
-    // TODO (3) Cache the weather data in a member variable and deliver it in onStartLoading.
+    // TODO DONE (2) Within onCreateLoader, return a new AsyncTaskLoader that looks a lot like the existing FetchWeatherTask.
+    // TODO DONE (3) Cache the weather data in a member variable and deliver it in onStartLoading.
 
-    // TODO (4) When the load is finished, show either the data or an error message if there is no data
+    // TODO DONE (4) When the load is finished, show either the data or an error message if there is no data
 
     @SuppressLint("StaticFieldLeak")
     @Override
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    // TODO (6) Remove any and all code from MainActivity that references FetchWeatherTask
+    // TODO DONE (6) Remove any and all code from MainActivity that references FetchWeatherTask
 
     /**
      * This method uses the URI scheme for showing a location found on a
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        // TODO (5) Refactor the refresh functionality to work with our AsyncTaskLoader
+        // TODO DONE (5) Refactor the refresh functionality to work with our AsyncTaskLoader
         if (id == R.id.action_refresh) {
             mForecastAdapter.setWeatherData(null);
             getSupportLoaderManager().initLoader(FORECAST_LOADER_ID, null, this);
