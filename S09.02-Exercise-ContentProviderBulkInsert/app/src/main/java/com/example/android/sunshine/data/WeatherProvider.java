@@ -20,6 +20,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
@@ -138,7 +139,32 @@ public class WeatherProvider extends ContentProvider {
      */
     @Override
     public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
-        throw new RuntimeException("Student, you need to implement the bulkInsert method!");
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+
+       switch (sUriMatcher.match(uri)) {
+           case CODE_WEATHER:
+                db.beginTransaction();
+                int rowsInserted = 0;
+                try {
+                    for (ContentValues value: values) {
+                        if (db.insert(WeatherContract.WeatherEntry.TABLE_NAME, null, value) != -1) {
+                            rowsInserted++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+
+                if (rowsInserted != 0) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                }
+
+                return rowsInserted;
+           default:
+               return super.bulkInsert(uri, values);
+       }
+
 
 //          TODO (2) Only perform our implementation of bulkInsert if the URI matches the CODE_WEATHER code
 
