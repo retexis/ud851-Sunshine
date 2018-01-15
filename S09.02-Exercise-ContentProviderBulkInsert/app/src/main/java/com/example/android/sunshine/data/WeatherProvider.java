@@ -123,7 +123,7 @@ public class WeatherProvider extends ContentProvider {
         return true;
     }
 
-//  TODO (1) Implement the bulkInsert method
+//  TODO DONE (1) Implement the bulkInsert method
     /**
      * Handles requests to insert a set of new rows. In Sunshine, we are only going to be
      * inserting multiple rows of data at a time from a weather forecast. There is no use case
@@ -166,11 +166,11 @@ public class WeatherProvider extends ContentProvider {
        }
 
 
-//          TODO (2) Only perform our implementation of bulkInsert if the URI matches the CODE_WEATHER code
+//          TODO DONE (2) Only perform our implementation of bulkInsert if the URI matches the CODE_WEATHER code
 
-//              TODO (3) Return the number of rows inserted from our implementation of bulkInsert
+//              TODO DONE (3) Return the number of rows inserted from our implementation of bulkInsert
 
-//          TODO (4) If the URI does match match CODE_WEATHER, return the super implementation of bulkInsert
+//          TODO DONE (4) If the URI does match match CODE_WEATHER, return the super implementation of bulkInsert
     }
 
     /**
