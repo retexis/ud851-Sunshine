@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.WeatherContract;
@@ -94,6 +95,7 @@ public class DetailActivity extends AppCompatActivity implements
     private TextView mHumidityView;
     private TextView mWindView;
     private TextView mPressureView;
+    private ImageView iconView;
 
     /*
      * This field is used for data binding. Normally, we would have to call findViewById many
@@ -118,6 +120,7 @@ public class DetailActivity extends AppCompatActivity implements
         mHumidityView = (TextView) findViewById(R.id.humidity);
         mWindView = (TextView) findViewById(R.id.wind);
         mPressureView = (TextView) findViewById(R.id.pressure);
+        iconView = (ImageView) findViewById(R.id.weather_icon);
 
 //      TODO (6) Instantiate mDetailBinding using DataBindingUtil
 
@@ -385,6 +388,8 @@ public class DetailActivity extends AppCompatActivity implements
         /* Store the forecast summary String in our forecast summary field to share later */
         mForecastSummary = String.format("%s - %s - %s/%s",
                 dateText, description, highString, lowString);
+
+        iconView.setImageResource(SunshineWeatherUtils.getLargeArtResourceIdForWeatherCondition(weatherId));
     }
 
     /**

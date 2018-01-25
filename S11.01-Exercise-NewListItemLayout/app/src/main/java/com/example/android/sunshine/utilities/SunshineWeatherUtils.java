@@ -75,15 +75,8 @@ public final class SunshineWeatherUtils {
      *
      * @return String in the form: "HIGH° / LOW°"
      */
-    public static String formatHighLows(Context context, double high, double low) {
-        long roundedHigh = Math.round(high);
-        long roundedLow = Math.round(low);
-
-        String formattedHigh = formatTemperature(context, roundedHigh);
-        String formattedLow = formatTemperature(context, roundedLow);
-
-        String highLowStr = formattedHigh + " / " + formattedLow;
-        return highLowStr;
+    public static String formatHighLows(Context context, double temp) {
+        return formatTemperature(context, Math.round(temp));
     }
 
     /**
